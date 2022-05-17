@@ -13,7 +13,7 @@ _, _, _, mean_r_cl_fiducial, mean_std_r_cl_fiducial = np.loadtxt("data/r_results
 
 # TODO: Replace the results files with the other pipeline results
 _, _, _, mean_r_map_based, mean_std_r_map_based = np.loadtxt("data/r_results_cl_fiducial.txt", dtype='str', skiprows=1, unpack=True)
-_, _, _, mean_r_nilc, mean_std_r_nilc = np.loadtxt("data/r_results_cl_fiducial.txt", dtype='str', skiprows=1, unpack=True)
+_, _, _, mean_r_nilc, mean_std_r_nilc = np.loadtxt("data/data/r0_results_NILC.txt", dtype='str', skiprows=1, unpack=True)
 _, _, _, mean_r_cl_moments, mean_std_r_cl_moments = np.loadtxt("data/r_results_cl_fiducial.txt", dtype='str', skiprows=1, unpack=True)
 
 mean_r_cl_fiducial = mean_r_cl_fiducial.astype('float')
