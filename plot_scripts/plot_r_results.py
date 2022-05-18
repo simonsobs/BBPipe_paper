@@ -10,11 +10,10 @@ from matplotlib.lines import Line2D
 # 2: Read data
 # Important: data needs to be formatted like in the example "r_results_cl_fiducial.txt"
 _, _, _, mean_r_cl_fiducial, mean_std_r_cl_fiducial = np.loadtxt("data/r_results_cl_fiducial.txt", dtype='str', skiprows=1, unpack=True)
-
 # TODO: Replace the results files with the other pipeline results
 _, _, _, mean_r_map_based, mean_std_r_map_based = np.loadtxt("data/r_results_cl_fiducial.txt", dtype='str', skiprows=1, unpack=True)
-_, _, _, mean_r_nilc, mean_std_r_nilc = np.loadtxt("data/r0_results_NILC.txt", dtype='str', skiprows=1, unpack=True)
-_, _, _, mean_r_cl_moments, mean_std_r_cl_moments = np.loadtxt("data/r0_results_moments.txt", dtype='str', unpack=True)
+_, _, _, mean_r_nilc, mean_std_r_nilc = np.loadtxt("data/r_results_NILC_fiducial.txt", dtype='str', skiprows=1, unpack=True)
+_, _, _, mean_r_cl_moments, mean_std_r_cl_moments = np.loadtxt("data/r_results_moments_fiducial.txt", dtype='str', unpack=True)
 
 mean_r_cl_fiducial = mean_r_cl_fiducial.astype('float')
 mean_std_r_cl_fiducial = mean_std_r_cl_fiducial.astype('float')
@@ -49,5 +48,6 @@ line_cl_moments = Line2D([0], [0], label='CL-moments', color='y')
 handles, labels = plt.gca().get_legend_handles_labels()
 handles.extend([line_cl_fiducial, line_map_based, line_nilc, line_cl_moments])
 plt.ylabel(r'$r$')
-plt.legend(handles=handles)
+plt.legend(handles=handles, loc='lower right')
+plt.savefig('r_fiducial.pdf', bbox_inches='tight')
 plt.show()
