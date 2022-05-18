@@ -45,6 +45,42 @@ line_map_based = Line2D([0], [0], label='map-based', color='g')
 line_nilc = Line2D([0], [0], label='NILC', color='b')
 line_cl_moments = Line2D([0], [0], label='CL-moments', color='y')
 
+fgnames = ['Gaussian', 'd0s0', 'd1s1', 'dmsm']
+nlev = ['Goal rms,', 'Goal rms,', 'Baseline rms,', 'Baseline rms,']
+oof = ['optimistic $1/f$', 'pessimistic $1/f$',
+       'optimistic $1/f$', 'pessimistic $1/f$']
+print(" ")
+print(" ")
+stout = "\\begin{table*}\n\centering\n\\begin{tabular}{|l|l|c|c|c|c|}\n"
+stout += "\hline\n"
+stout += "\multicolumn{6}{|c|}{$10^3\\times(r\pm\sigma(r))$}\\\\\n"
+stout += "\hline\n"
+stout += "Noise & FG model & Pipeline A & $+$ moments & Pipeline B & Pipeline C\\\\\n"
+for inh in range(1):
+    for noi in range(4):
+        stout += "\hline\n"
+        for fgs in range(4):
+            if fgs in [0, 3]:
+                first = ' & '
+            elif fgs == 1:
+                first = nlev[noi] + " & "
+            elif fgs == 2:
+                first = oof[noi] + " & "
+            idx = 16*inh+4*noi+fgs
+            st = first + fgnames[fgs] + " & "
+            st += " $%.2lf \pm %.2lf$ & " % (mean_r_cl_fiducial[idx]*1E3, mean_std_r_cl_fiducial[idx]*1E3)
+            st += " $%.2lf \pm %.2lf$ & " % (mean_r_cl_moments[idx]*1E3, mean_std_r_cl_moments[idx]*1E3)
+            st += " $%.2lf \pm %.2lf$ & " % (mean_r_map_based[idx]*1E3, mean_std_r_map_based[idx]*1E3)
+            st += " $%.2lf \pm %.2lf$ \\\\\n " % (mean_r_nilc[idx]*1E3, mean_std_r_nilc[idx]*1E3)
+            stout += st
+stout += "\hline\n"
+stout += "\\end{tabular}\n"
+stout += "\caption{\lipsum[5]}\label{tab:r_fiducial_results}\n"
+stout += "\end{table*}\n"
+print(stout)
+print(" ")
+print(" ")
+
 handles, labels = plt.gca().get_legend_handles_labels()
 handles.extend([line_cl_fiducial, line_map_based, line_nilc, line_cl_moments])
 plt.ylabel(r'$r$')
