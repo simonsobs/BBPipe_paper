@@ -10,8 +10,8 @@ from matplotlib.lines import Line2D
 # 2: Read data
 # Important: data needs to be formatted like in the example "r_results_cl_fiducial.txt"
 _, _, _, _, _, mean_r_cl_fiducial, mean_std_r_cl_fiducial = np.loadtxt("data/r_results_cl_extra.txt", dtype='str', unpack=True)
+_, _, _, _, _, mean_r_map_based, mean_std_r_map_based = np.loadtxt("data/r_results_map_based_extra.txt", dtype='str', unpack=True)
 # TODO: Replace the results files with the other pipeline results
-_, _, _, _, _, mean_r_map_based, mean_std_r_map_based = np.loadtxt("data/r_results_cl_extra.txt", dtype='str', unpack=True)
 _, _, _, _, _, mean_r_nilc, mean_std_r_nilc = np.loadtxt("data/r_results_cl_extra.txt", dtype='str', unpack=True)
 _, _, _, _, _, mean_r_cl_moments, mean_std_r_cl_moments = np.loadtxt("data/r_results_cl_extra.txt", dtype='str', unpack=True)
 
@@ -67,10 +67,10 @@ stout += "\hline\n"
 for case in range(4):
     idx = case
     st = case_labels[idx] + " & "
-    st += " $%.2lf \pm %.2lf$ & " % (mean_r_cl_fiducial[idx]*1E3, mean_std_r_cl_fiducial[idx]*1E3)
-    st += " $%.2lf \pm %.2lf$ & " % (mean_r_cl_moments[idx]*1E3, mean_std_r_cl_moments[idx]*1E3)
-    st += " $%.2lf \pm %.2lf$ & " % (mean_r_map_based[idx]*1E3, mean_std_r_map_based[idx]*1E3)
-    st += " $%.2lf \pm %.2lf$ \\\\\n " % (mean_r_nilc[idx]*1E3, mean_std_r_nilc[idx]*1E3)
+    st += " $%.1lf \pm %.1lf$ & " % (mean_r_cl_fiducial[idx]*1E3, mean_std_r_cl_fiducial[idx]*1E3)
+    st += " $%.1lf \pm %.1lf$ & " % (mean_r_cl_moments[idx]*1E3, mean_std_r_cl_moments[idx]*1E3)
+    st += " $%.1lf \pm %.1lf$ & " % (mean_r_map_based[idx]*1E3, mean_std_r_map_based[idx]*1E3)
+    st += " $%.1lf \pm %.1lf$ \\\\\n " % (mean_r_nilc[idx]*1E3, mean_std_r_nilc[idx]*1E3)
     stout += st
 stout += "\hline\n"
 stout += "\\end{tabular}\n"

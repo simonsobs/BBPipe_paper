@@ -9,8 +9,7 @@ import matplotlib.pyplot as plt
 # 2: Read data
 # Important: data needs to be formatted like in the example "r_results_cl_fiducial.txt"
 _, _, _, mean_r_cl_fiducial, mean_std_r_cl_fiducial = np.loadtxt("data/r_results_cl_fiducial.txt", dtype='str', skiprows=1, unpack=True)
-# TODO: Replace the results files with the other pipeline results
-_, _, _, mean_r_map_based, mean_std_r_map_based = np.loadtxt("data/r_results_cl_fiducial.txt", dtype='str', skiprows=1, unpack=True)
+_, _, _, mean_r_map_based, mean_std_r_map_based = np.loadtxt("data/r_results_map_based_fiducial.txt", dtype='str', skiprows=1, unpack=True)
 _, _, _, mean_r_nilc, mean_std_r_nilc = np.loadtxt("data/r_results_NILC_fiducial.txt", dtype='str', skiprows=1, unpack=True)
 _, _, _, mean_r_cl_moments, mean_std_r_cl_moments = np.loadtxt("data/r_results_moments_fiducial.txt", dtype='str', unpack=True)
 
@@ -25,9 +24,7 @@ mean_std_r_cl_moments = mean_std_r_cl_moments.astype('float')
 
 ###
 # 3: Make plot.
-plt.figure(figsize=(6,4))
-
-fig, ax1 = plt.subplots()
+fig, ax1 = plt.subplots(figsize=(6,4))
 ax2 = ax1.twinx()
 
 ax1.set_ylabel(r'$r$')
@@ -44,8 +41,8 @@ for noi in [2]:                # 0: gop, 1: gpe, 2: blop, 3: blpe; for now blop 
         idx_hom = 16 + 4*noi + fgs
         ratios = [mean_std_r_cl_fiducial[idx_inhom]/mean_std_r_cl_fiducial[idx_hom]-1,
                   mean_std_r_cl_moments[idx_inhom]/mean_std_r_cl_moments[idx_hom]-1,
-                  mean_std_r_map_based[idx_inhom]/mean_std_r_map_based[idx_hom]-1,
-                  mean_std_r_nilc[idx_inhom]/mean_std_r_nilc[idx_hom]-1]
+                  mean_std_r_nilc[idx_inhom]/mean_std_r_nilc[idx_hom]-1,
+                  mean_std_r_map_based[idx_inhom]/mean_std_r_map_based[idx_hom]-1]
         ax2.plot([-3,-1,1,3], ratios, ls='-', marker='o', c='k')
         for inh in [0,1]:                # 0: inhom, 1: hom
             m = markers[inh]
@@ -54,14 +51,15 @@ for noi in [2]:                # 0: gop, 1: gpe, 2: blop, 3: blpe; for now blop 
                          yerr=mean_std_r_cl_fiducial[idx], fmt=f'r{m}')
             ax1.errorbar(-1+.5*(inh-.5), mean_r_cl_moments[idx], 
                          yerr=mean_std_r_cl_moments[idx], fmt=f'y{m}')
-            ax1.errorbar(1+.5*(inh-.5), mean_r_map_based[idx], 
-                         yerr=mean_std_r_map_based[idx], fmt=f'g{m}')
-            ax1.errorbar(3+.5*(inh-.5), mean_r_nilc[idx], 
+            ax1.errorbar(1+.5*(inh-.5), mean_r_nilc[idx], 
                          yerr=mean_std_r_nilc[idx], fmt=f'b{m}')
+            ax1.errorbar(3+.5*(inh-.5), mean_r_map_based[idx], 
+                         yerr=mean_std_r_map_based[idx], fmt=f'g{m}')
 
-ax1.set_xticks([-3, -1, 1, 3], ['CL-fiducial', 'CL-moments', 'Map-based', 'NILC'])
+ax1.set_xticks([-3, -1, 1, 3])
+ax1.set_xticklabels(['Pipeline A', r'$+$ moments', 'Pipeline B', 'Pipeline C'])
 plt.tight_layout()
-plt.savefig('plot_hom_vs_inhom.pdf')
+plt.savefig('hom_vs_inhom.pdf')
 
 ###
 # 4: Make LaTeX table to paste into paper draft
@@ -79,10 +77,10 @@ for noi in [2]:                # 0: gop, 1: gpe, 2: blop, 3: blpe; for now blop 
         for inh in [0,1]:      # 0: inhom, 1: hom
             idx = 16*inh + 4*noi + fgs
             st = first[inh] + " & "
-            st += " $%.2lf \pm %.2lf$ & " % (mean_r_cl_fiducial[idx]*1E3, mean_std_r_cl_fiducial[idx]*1E3)
-            st += " $%.2lf \pm %.2lf$ & " % (mean_r_cl_moments[idx]*1E3, mean_std_r_cl_moments[idx]*1E3)
-            st += " $%.2lf \pm %.2lf$ & " % (mean_r_map_based[idx]*1E3, mean_std_r_map_based[idx]*1E3)
-            st += " $%.2lf \pm %.2lf$ \\\\\n " % (mean_r_nilc[idx]*1E3, mean_std_r_nilc[idx]*1E3)            
+            st += " $%.1lf \pm %.1lf$ & " % (mean_r_cl_fiducial[idx]*1E3, mean_std_r_cl_fiducial[idx]*1E3)
+            st += " $%.1lf \pm %.1lf$ & " % (mean_r_cl_moments[idx]*1E3, mean_std_r_cl_moments[idx]*1E3)
+            st += " $%.1lf \pm %.1lf$ & " % (mean_r_nilc[idx]*1E3, mean_std_r_nilc[idx]*1E3)
+            st += " $%.1lf \pm %.1lf$ \\\\\n " % (mean_r_map_based[idx]*1E3, mean_std_r_map_based[idx]*1E3)      
             stout += st
         idx_inhom = 4*noi + fgs
         idx_hom = 16 + 4*noi + fgs
