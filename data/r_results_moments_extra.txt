@@ -1,0 +1,5 @@
+# r_input AL_input inhom noise foreground mean_r mean_std_r
+0.00 1.0 inhom blop d1s1 0.0002 0.0028
+0.00 0.5 inhom blop d1s1 0.0007 0.0022
+0.01 1.0 inhom blop d1s1 0.0103 0.0032
+0.01 0.5 inhom blop d1s1 XX XX
