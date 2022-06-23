@@ -11,9 +11,9 @@ from matplotlib.lines import Line2D
 # Important: data needs to be formatted like in the example "r_results_cl_fiducial.txt"
 _, _, _, _, _, mean_r_cl_fiducial, mean_std_r_cl_fiducial = np.loadtxt("data/r_results_cl_extra.txt", dtype='str', unpack=True)
 _, _, _, _, _, mean_r_map_based, mean_std_r_map_based = np.loadtxt("data/r_results_map_based_extra.txt", dtype='str', unpack=True)
+_, _, _, _, _, mean_r_cl_moments, mean_std_r_cl_moments = np.loadtxt("data/r_results_moments_extra.txt", dtype='str', unpack=True)
 # TODO: Replace the results files with the other pipeline results
-_, _, _, _, _, mean_r_nilc, mean_std_r_nilc = np.loadtxt("data/r_results_cl_extra.txt", dtype='str', unpack=True)
-_, _, _, _, _, mean_r_cl_moments, mean_std_r_cl_moments = np.loadtxt("data/r_results_cl_extra.txt", dtype='str', unpack=True)
+_, _, _, _, _, mean_r_nilc, mean_std_r_nilc = np.loadtxt("data/r_results_moments_extra.txt", dtype='str', unpack=True)
 
 mean_r_cl_fiducial = mean_r_cl_fiducial.astype('float')
 mean_std_r_cl_fiducial = mean_std_r_cl_fiducial.astype('float')
