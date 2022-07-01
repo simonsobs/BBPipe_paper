@@ -1,0 +1,39 @@
+# inhom noise foreground mean_r mean_std_r
+inhom gop gauss NaN NaN
+inhom gop d0s0 NaN NaN
+inhom gop  d1s1 0.0000  0.0033
+inhom gop  dmsm 0.0002 0.0030
+inhom gpe gauss NaN NaN
+inhom gpe d0s0 NaN NaN
+inhom gpe d1s1 NaN NaN
+inhom gpe dmsm NaN NaN
+inhom blop gauss NaN NaN
+inhom blop d0s0 NaN NaN
+inhom blop d1s1 NaN NaN
+inhom blop dmsm NaN NaN
+inhom blpe gauss NaN NaN
+inhom blpe d0s0 NaN NaN
+inhom blpe d1s1 -0.0012 0.0053
+inhom blpe dmsm -0.0005 0.0051
+hom gop gauss NaN NaN
+hom gop d0s0 NaN NaN
+hom gop d1s1 NaN NaN
+hom gop dmsm NaN NaN
+hom gpe gauss NaN NaN
+hom gpe d0s0 NaN NaN
+hom gpe d1s1 NaN NaN
+hom gpe dmsm NaN NaN
+hom blop gauss NaN NaN
+hom blop d0s0 NaN NaN
+hom blop d1s1 NaN NaN
+hom blop dmsm NaN NaN
+hom blpe gauss NaN NaN
+hom blpe d0s0 NaN NaN
+hom blpe d1s1 NaN NaN
+hom blpe dmsm NaN NaN
+
+
+
+
+
+
