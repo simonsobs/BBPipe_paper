@@ -24,14 +24,14 @@ mean_std_r_cl_moments = mean_std_r_cl_moments.astype('float')
 
 ###
 # 3: Make plot.
-fig, ax1 = plt.subplots(figsize=(6,4))
+fig, ax1 = plt.subplots(figsize=(6,3))
 ax2 = ax1.twinx()
 
 ax1.set_ylabel(r'$r$')
 ax2.set_ylabel(r'relative increase $\sigma(r)$')
 ax1.axhline(0, color='k', linestyle='dashed')
-ax1.set_ylim((-.0045,.0045))
-ax2.set_ylim((-.45,.45))
+ax1.set_ylim((-.0035,.0045))
+ax2.set_ylim((-.35,.45))
 
 markers = ['o', 'x']
 

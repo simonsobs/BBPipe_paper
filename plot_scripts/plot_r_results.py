@@ -46,10 +46,10 @@ for inh in range(1):                # 0: inhom, 1: hom; for now inhom only
             
 plt.xticks([0,1,2,3], ['Gaussian', 'd0s0', 'd1s1', 'dmsm'])
 
-line_cl_fiducial = Line2D([0], [0], label='Pipeline A', color='r')
+line_cl_fiducial = Line2D([0], [0], label=r'Pipeline A ($C_{\ell}$)', color='r')
 line_cl_moments = Line2D([0], [0], label=r'$+$ moments', color='y')
-line_nilc = Line2D([0], [0], label='Pipeline B', color='b')
-line_map_based = Line2D([0], [0], label='Pipeline C', color='g')
+line_nilc = Line2D([0], [0], label='Pipeline B (NILC)', color='b')
+line_map_based = Line2D([0], [0], label='Pipeline C (map-based)', color='g')
 line_map_based_dust = Line2D([0], [0], label='$+$ dust marginal.', color='c')
 
 
@@ -92,7 +92,7 @@ print(" ")
 print(" ")
 
 handles, labels = plt.gca().get_legend_handles_labels()
-handles.extend([line_cl_fiducial, line_cl_moments, line_nilc, line_map_based, line_map_based_dust])
+handles.extend([line_cl_fiducial, line_cl_moments, line_map_based, line_map_based_dust, line_nilc])
 plt.ylabel(r'$r$')
 plt.legend(ncol=3, handles=handles, loc='upper left')
 plt.tight_layout()

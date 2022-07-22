@@ -37,19 +37,22 @@ case_labels = [r"$(r=0,$"+'\n'+r"$A_{\rm{lens}}=1)$",
 # 0: (r=0,AL=1), 1: (r=0,AL=.5), 2: (r=.01,AL=1), 3: (r=.01,AL=.5)
 for case in range(4):
     idx = case
-    plt.errorbar(case-0.225, mean_r_cl_fiducial[idx], yerr=mean_std_r_cl_fiducial[idx], fmt='r.')
-    plt.errorbar(case-0.075, mean_r_map_based[idx], yerr=mean_std_r_map_based[idx], fmt='g.')
-    plt.errorbar(case+0.075, mean_r_nilc[idx], yerr=mean_std_r_nilc[idx], fmt='b.')
-    plt.errorbar(case+0.225, mean_r_cl_moments[idx], yerr=mean_std_r_cl_moments[idx], fmt='y.')
+    plt.errorbar(case-0.225, mean_r_cl_fiducial[idx], yerr=mean_std_r_cl_fiducial[idx], fmt='ro')
+    plt.errorbar(case-0.075, mean_r_cl_moments[idx], yerr=mean_std_r_cl_moments[idx], fmt='yo')
+    plt.errorbar(case+0.075, mean_r_nilc[idx], yerr=mean_std_r_nilc[idx], fmt='bo')
+    plt.errorbar(case+0.225, mean_r_map_based[idx], yerr=mean_std_r_map_based[idx], fmt='go')
+    
+    
 
 plt.xticks([0,1,2,3], case_labels, rotation=45, ha="center")
-line_cl_fiducial = Line2D([0], [0], label='CL-fiducial', color='r')
-line_map_based = Line2D([0], [0], label='map-based', color='g')
-line_nilc = Line2D([0], [0], label='NILC', color='b')
-line_cl_moments = Line2D([0], [0], label='CL-moments', color='y')
+line_cl_fiducial = Line2D([0], [0], label=r'Pipeline A ($C_{\ell}$)', color='r')
+line_cl_moments = Line2D([0], [0], label=r'$+$ moments', color='y')
+line_nilc = Line2D([0], [0], label='Pipeline B (NILC)', color='b')
+line_map_based = Line2D([0], [0], label='Pipeline C (map-based)', color='g')
+
 
 handles, labels = plt.gca().get_legend_handles_labels()
-handles.extend([line_cl_fiducial, line_map_based, line_nilc, line_cl_moments])
+handles.extend([line_cl_fiducial, line_cl_moments, line_nilc, line_map_based])
 plt.ylabel(r'$r$')
 plt.legend(handles=handles, loc='upper left')
 plt.savefig('r_extra.pdf', bbox_inches='tight')
@@ -69,12 +72,12 @@ for case in range(4):
     st = case_labels[idx] + " & "
     st += " $%.1lf \pm %.1lf$ & " % (mean_r_cl_fiducial[idx]*1E3, mean_std_r_cl_fiducial[idx]*1E3)
     st += " $%.1lf \pm %.1lf$ & " % (mean_r_cl_moments[idx]*1E3, mean_std_r_cl_moments[idx]*1E3)
-    st += " $%.1lf \pm %.1lf$ & " % (mean_r_map_based[idx]*1E3, mean_std_r_map_based[idx]*1E3)
-    st += " $%.1lf \pm %.1lf$ \\\\\n " % (mean_r_nilc[idx]*1E3, mean_std_r_nilc[idx]*1E3)
+    st += " $%.1lf \pm %.1lf$ & " % (mean_r_nilc[idx]*1E3, mean_std_r_nilc[idx]*1E3)
+    st += " $%.1lf \pm %.1lf$ \\\\\n " % (mean_r_map_based[idx]*1E3, mean_std_r_map_based[idx]*1E3)
     stout += st
 stout += "\hline\n"
 stout += "\\end{tabular}\n"
-stout += "\caption{\lipsum[5]}\label{tab:r_fiducial_results}\n"
+stout += "\caption{\lipsum[5]}\label{tab:r_extra_results}\n"
 stout += "\end{table*}\n"
 print(stout)
 print(" ")
