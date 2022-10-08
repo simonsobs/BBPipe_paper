@@ -1,0 +1,3 @@
+# noise foreground mean_r mean_std_r
+######################################
+inhom gop d10s5 0.0025 0.0031
